@@ -17,9 +17,9 @@ export class FestivalDetailsComponent {
   
   ngOnChanges(): void {
     this.nameForm = this.formBuilder.group({
-      name: [this.festival.name],
-      entranceLoc : [this.festival.tablemax_1],
-      mainRoomLoc : [this.festival.tablemax_2],
+      name: [this.festival.name, [Validators.required, Validators.minLength(4)]],
+      entranceLoc : [this.festival.tablemax_1, [Validators.required, Validators.min(60)]],
+      mainRoomLoc : [this.festival.tablemax_2, [Validators.required, Validators.min(70)]],
     })
   }
 
