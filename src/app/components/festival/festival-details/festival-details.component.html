@@ -1,0 +1,8 @@
+<h2>Details</h2>
+<form [formGroup]="nameForm" (ngSubmit)="changeValue()" novalidate>
+    <input type="text" formControlName="name" />
+    <input type="text" formControlName="entranceLoc" />
+    <input type="text" formControlName="mainRoomLoc" />
+    <button type="submit" [disabled]="!nameForm.valid">Change</button>
+</form>
+<hr>

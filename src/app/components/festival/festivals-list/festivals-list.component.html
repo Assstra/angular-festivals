@@ -1,0 +1,21 @@
+<style>
+  tr{
+    text-align: center;
+  }
+</style>
+<p>festivals-list works!</p>
+<h3> There are {{festivals.length}} festivals</h3>
+<table *ngFor="let festival of festivals;let idx = index">
+  <tr>
+    <th>Name</th>
+    <th>EntranceLoc</th>
+    <th>MainRoomLoc</th>
+  </tr>
+  <tr>
+    <td>{{festival.name}}</td>
+    <td>{{festival.tablemax_1}}</td>
+    <td>{{festival.tablemax_2}}</td>
+    <td><button (click)="selectId(idx)">Select</button></td>
+  </tr>
+</table> 
+<hr>
