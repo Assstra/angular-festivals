@@ -1,0 +1,53 @@
+<style>
+  tr {
+    text-align: center;
+  }
+</style>
+<h2>Editors</h2>
+<table *ngFor="let editor of editors | async">
+  <tr>
+    <th>Name</th>
+    <th>Contacts</th>
+  </tr>
+  <tr>
+    <td>{{ editor.name }}</td>
+    <td>{{ editor.contacts }}</td>
+    <td><button color="primary" (click)="selectId(editor.id!)">Select</button></td>
+    <td><button color="warn" (click)="deleteById(editor)">Delete</button></td>
+  </tr>
+</table>
+<hr />
+<h2>Create</h2>
+<form
+  *ngIf="creationForm"
+  [formGroup]="creationForm"
+  (ngSubmit)="createEditor()"
+  novalidate
+>
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="name"
+      placeholder="Ex. Alexis"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Contacts</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="contacts"
+      placeholder="Ex. Google"
+    />
+  </mat-form-field>
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="!creationForm.valid"
+  >
+    Create
+  </button>
+</form>

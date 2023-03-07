@@ -1,0 +1,64 @@
+<h2>Create</h2>
+
+<form
+  *ngIf="creationForm"
+  [formGroup]="creationForm"
+  (ngSubmit)="createFestival()"
+  novalidate
+>
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" formControlName="name" placeholder="Ex. test" />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Entrance Loc</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="entranceLoc"
+      placeholder="Ex. 70"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Main room Loc</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="mainRoomLoc"
+      placeholder="Ex. 80"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Editor</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Editor"
+      matInput
+      formControlName="editor"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let editor of editors | async" [value]="editor.name">
+        {{ editor.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-chip-listbox #chipList selectable multiple>
+    <mat-chip-option
+      (selectionChange)="onSelectionChange(game.name)"
+      *ngFor="let game of games | async"
+      [value]="game"
+    >
+      {{ game.name }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="!creationForm.valid"
+  >
+    Create
+  </button>
+</form>

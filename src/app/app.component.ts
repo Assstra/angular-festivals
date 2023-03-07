@@ -1,5 +1,11 @@
 import { Component, } from '@angular/core';
 import { Festival } from './models/festival';
+import { FestivalsService } from './services/festivals/festivals.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
+// TODO
+// Rajouter affichage jeux + éditeurs dans le /App et voila mdr jpp
 
 @Component({
   selector: 'app-root',
@@ -7,20 +13,30 @@ import { Festival } from './models/festival';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor( private festivalsService: FestivalsService, private route: Router) {}
   title = 'FestivalApp';
 
-  festivals!: Festival[]
-  public index!: number
+  festivals!: Observable<Festival[]>
+  //public index!: number
 
   ngOnInit(): void {
-    this.festivals = [
-      new Festival("FJM2020"),
-      new Festival("FJM2019"),
-      new Festival("FJM2018"),
-    ]
+    this.festivals = this.festivalsService.getAllFestivals();
   }
 
-  changeFestival(value: number){
-    this.index = value
+  redirectToCreation(){
+    this.route.navigate(['/festivals/create'])
+  }
+  
+  redirectToEditor(){
+    this.route.navigate(['/editors'])
+  }
+
+  redirectToGames(){
+    this.route.navigate(['/games'])
+  }
+
+  changeFestival(value: string){
+    //this.index = value
+    this.route.navigate([`/festival/${value}`])
   }
 }

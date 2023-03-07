@@ -1,21 +1,52 @@
 <style>
-  tr{
+  tr {
     text-align: center;
   }
 </style>
-<p>festivals-list works!</p>
-<h3> There are {{festivals.length}} festivals</h3>
-<table *ngFor="let festival of festivals;let idx = index">
+<h3 *ngIf="festivals">There are {{ festivals.length }} festivals</h3>
+<table mat-table *ngFor="let festival of festivals" class="mat-elevation-z8">
   <tr>
     <th>Name</th>
-    <th>EntranceLoc</th>
-    <th>MainRoomLoc</th>
+    <th>Entrance Loc</th>
+    <th>MainRoom Loc</th>
+    <th>Editor</th>
+    <th>Games</th>
   </tr>
-  <tr>
-    <td>{{festival.name}}</td>
-    <td>{{festival.tablemax_1}}</td>
-    <td>{{festival.tablemax_2}}</td>
-    <td><button (click)="selectId(idx)">Select</button></td>
-  </tr>
-</table> 
-<hr>
+  <ng-container matColumnDef="name">
+    <td>{{ festival.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="entranceLoc">
+    <td mat-cell >{{ festival.tablemax_1 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="mainRoomLoc">
+    <td mat-cell >{{ festival.tablemax_2 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="editor">
+    <td mat-cell >{{ festival.editor }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="games">
+    <td mat-cell >
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let game of festival.games" [value]="game">
+          {{ game }}
+        </mat-chip>
+      </mat-chip-listbox>
+    </td>
+  </ng-container>
+
+  <td>
+    <button mat-raised-button color="primary" (click)="selectId(festival.id!)">
+      Select
+    </button>
+  </td>
+  <td>
+    <button mat-raised-button color="warn" (click)="deleteById(festival)">
+      Delete
+    </button>
+  </td>
+</table>
+<hr />

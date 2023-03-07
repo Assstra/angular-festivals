@@ -1,0 +1,53 @@
+<style>
+  tr {
+    text-align: center;
+  }
+</style>
+
+<h2>Games</h2>
+<table *ngFor="let game of games | async">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+  </tr>
+  <tr>
+    <td>{{ game.name }}</td>
+    <td>{{ game.type }}</td>
+    <td><button (click)="deleteById(game)">Delete</button></td>
+  </tr>
+</table>
+<hr />
+<h2>Create</h2>
+<form
+  *ngIf="creationGameForm"
+  [formGroup]="creationGameForm"
+  (ngSubmit)="createGame()"
+  novalidate
+>
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="name"
+      placeholder="Ex. Escape Game"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Type</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="type"
+      placeholder="Ex. Board Game"
+    />
+  </mat-form-field>
+  <button
+    type="submit"
+    mat-raised-button
+    color="warn"
+    [disabled]="!creationGameForm.valid"
+  >
+    Create
+  </button>
+</form>

@@ -3,7 +3,8 @@
 </style>
 
 <h1>Festival Lists</h1>
-<app-festivals-list (newEvent)="changeFestival($event)" [festivals]="festivals"></app-festivals-list>
-<app-festival-details *ngIf="index != undefined" [festival]="festivals[index]"></app-festival-details>
+<app-festivals-list (newEvent)="changeFestival($event)" [festivals]="festivals | async"></app-festivals-list>
+<button (click)="redirectToCreation()">CREATE A FESTIVAL</button>
+<button (click)="redirectToEditor()">EDITORS</button>
+<button (click)="redirectToGames()">GAMES</button>
 <app-message></app-message>
-<router-outlet></router-outlet>

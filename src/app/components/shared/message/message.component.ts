@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Festival } from 'src/app/models/festival';
 import { MessageService } from 'src/app/services/message.service';
 
 @Component({
