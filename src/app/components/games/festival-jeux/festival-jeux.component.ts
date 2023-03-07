@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Game } from 'src/app/models/game';
-import { FestivalsService } from 'src/app/services/festivals/festivals.service';
-import { FestivalformService } from 'src/app/services/festivals/festivalform.service';
-import { FestivaljsonService } from 'src/app/services/festivals/festivaljson.service';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { GamesService } from 'src/app/services/games/games.service';
